@@ -10,7 +10,13 @@ const button = document.getElementById ("button")
 
 initialValue ()
 
-// FUNZIONI ///////////////////////////////////////////
+// FUNZIONI ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Checks if the sum of two numbers is even or odd
+ * @param userNumber the 1st number entered
+ * @param numberAI the 2nd number entered
+ * @returns true if sum is even, false if odd
+ */
 
 function isSumOddOrEven (userNumber, numberAI) {
     const sum = userNumber + numberAI
@@ -22,15 +28,28 @@ function isSumOddOrEven (userNumber, numberAI) {
     }
 }
 
+/**
+ * Generates a random number between 1 and 5
+ * @returns this generated number
+ */
+
 function generateRandomNumber () {
     const randomNumber = (Math.floor (Math.random () * 5) + 1)
     return randomNumber
 }
 
+/**
+ * Inits the value of input type range when the page loads and assigns this value to the span next to the input
+ */
+
 function initialValue () {
     const inputVal = parseInt (inputRange.value)
     document.getElementById ("input-value") .innerText = inputVal
 }
+
+/**
+ * Runs the main code. This func() exists only to be recalled several times in the event listeners
+ */
 
 function eseguiCodice () {
     const AI = generateRandomNumber ()
@@ -59,7 +78,7 @@ function eseguiCodice () {
 }
 
 
-// EVENT-LISTENERS ////////////////////////////////////
+// EVENT-LISTENERS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 button.addEventListener ("click",
     function () {
         eseguiCodice ()
