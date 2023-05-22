@@ -10,6 +10,8 @@ const button = document.getElementById ("button")
 
 initialValue ()
 
+// FUNZIONI ///////////////////////////////////////////
+
 function isSumOddOrEven (userNumber, numberAI) {
     const sum = userNumber + numberAI
     if (sum % 2 === 0) {
@@ -30,43 +32,50 @@ function initialValue () {
     document.getElementById ("input-value") .innerText = inputVal
 }
 
+function eseguiCodice () {
+    const AI = generateRandomNumber ()
+    const inputVal = parseInt (inputRange.value)
+    const pari = radioPari.checked
+    const dispari = radioDispari.checked
+
+    if (isNaN (inputVal) || !pari || !dispari) {
+        document.getElementById ("risposta") .innerHTML = "<p class='response'>C'è un errore di input</p>"
+
+    }
+    
+    if ( isSumOddOrEven (inputVal, AI ) && pari ) {
+        document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è PARI! HAI VINTO!</p>'
+
+    } else if ( isSumOddOrEven (inputVal, AI ) && dispari ) {
+        document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è PARI, Hai perso.</p>'
+
+    } else if ( !isSumOddOrEven (inputVal, AI ) && pari ) {
+        document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è DISPARI, Hai perso.</p>'
+
+    } else if ( !isSumOddOrEven (inputVal, AI ) && dispari ) {
+        document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è DISPARI! HAI VINTO!</p>'
+
+    }
+}
+
+
+// EVENT-LISTENERS ////////////////////////////////////
+button.addEventListener ("click",
+    function () {
+        eseguiCodice ()
+    }
+)
+
 inputRange.addEventListener ("input",
     function () {
         initialValue ()
     }
 )
 
-
-button.addEventListener ("click",
-    function () {
-        const AI = generateRandomNumber ()
-        const inputVal = parseInt (inputRange.value)
-        const pari = radioPari.checked
-        const dispari = radioDispari.checked
-
-        if (isNaN (inputVal) || !pari || !dispari) {
-            document.getElementById ("risposta") .innerHTML = "<p class='response'>C'è un errore di input</p>"
-        }
-
-        if ( isSumOddOrEven (inputVal, AI ) && pari ) {
-            document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è PARI! HAI VINTO!</p>'
-
-            console.log ("Il tuo numero: " + inputVal + " Il numero dell'AI: " + AI + ", la loro somma è PARI! HAI VINTO!")
-
-        } else if ( isSumOddOrEven (inputVal, AI ) && dispari ) {
-            document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è PARI, Hai perso.</p>'
-            
-            console.log ("Il tuo numero: " + inputVal + " Il numero dell'AI: " + AI + ", la loro somma è PARI, Hai perso.")
-
-        } else if ( !isSumOddOrEven (inputVal, AI ) && pari ) {
-            document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è DISPARI, Hai perso.</p>'
-
-            console.log ("Il tuo numero: " + inputVal + " Il numero dell'AI: " + AI + ", la loro somma è DISPARI, Hai perso.")
-
-        } else if ( !isSumOddOrEven (inputVal, AI ) && dispari ) {
-            document.getElementById ("risposta") .innerHTML = '<p class="response">Il tuo numero: ' + inputVal + " Il numero dell'AI: " + AI + ', la loro somma è DISPARI! HAI VINTO!</p>'
-            
-            console.log ("Il tuo numero: " + inputVal + " Il numero dell'AI: " + AI + ", la loro somma è DISPARI! HAI VINTO!")
+document.addEventListener ("keydown", 
+    function (event) {
+        if (event.key === "Enter") {
+            eseguiCodice ()
         }
     }
 )
