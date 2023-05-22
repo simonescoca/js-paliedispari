@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(40, 61, 79);
+    color: white;
+}
+
+header {
+    width: fit-content;
+    margin: 3rem auto;
+}
+
+h1,
+.my_input-group{
+    padding: 1rem;
+}
+
+main{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.rules{
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1,
+.my_input-group,
+#input-value{
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+#input-value{
+    padding: 0.2rem 0.6rem;
+    font-family: monospace;
+}
+
+.my_input-group div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.response{
+    text-align: center;
+    margin-top: 3rem;
+}
